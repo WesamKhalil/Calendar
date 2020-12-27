@@ -65,15 +65,13 @@ let secs = date.getSeconds()
 
 setInterval(() => {
     secs++
-    if(secs == 60) {mins++}
-    if(mins == 60) {hours++}
-    timer.innerText = "0".repeat(hours % 24 < 10) + hours % 24 + ":" + "0".repeat(mins % 60 < 10) + mins % 60 + ":" + "0".repeat(secs % 60 < 10) + secs % 60
+    if(secs % 60 == 0) {mins++}
+    if(mins % 60 == 0) {hours++}
+    timer.innerText = "0".repeat(hours % 24 < 9) + hours % 24 + ":" + "0".repeat(mins % 60 < 10) + mins % 60 + ":" + "0".repeat(secs % 60 < 10) + secs % 60
 }, 1000)
 
 
-let weekDay = new Date(date.getFullYear() , date.getMonth(), 1).getDay()
-weekDay = weekDay == 0 ? 6 : weekDay - 1
+let weekDay = date.getDay() == 0 ? 6 : weekDay - 1
 let header = document.getElementById("full-date")
 let currDay = date.getDate()
 header.innerText = weekArr[weekDay].slice(0, 3) + " " + currDay + " " + monthArr[date.getMonth()] + " " + date.getFullYear()
-calCont.children.item(currDay + 6).className = "curr-day"
