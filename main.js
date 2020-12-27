@@ -65,8 +65,12 @@ let secs = date.getSeconds()
 
 setInterval(() => {
     secs++
-    if(secs % 60 == 0) {mins++}
-    if(mins % 60 == 0) {hours++}
+    if(secs % 60 == 0) {
+        mins++
+        if(mins % 60 == 0) {
+            hours++
+        }
+    }
     timer.innerText = "0".repeat(hours % 24 < 9) + hours % 24 + ":" + "0".repeat(mins % 60 < 10) + mins % 60 + ":" + "0".repeat(secs % 60 < 10) + secs % 60
 }, 1000)
 
